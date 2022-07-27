@@ -8,7 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       heroku-pipeline-id: ${{ steps.terraform-output.outputs.heroku-pipeline-id }}
+    defaults:
+      run:
+        working-directory: terraform
     steps:
+      - 
+        uses: actions/checkout@v3
       - 
         name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
