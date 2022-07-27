@@ -4,7 +4,7 @@ resource "heroku_app" "staging" {
 }
 
 resource "heroku_app" "production" {
-  name   = "tecnoly-production"
+  name   = "tecnoly"
   region = "us"
 }
 
