@@ -1,11 +1,13 @@
 resource "heroku_app" "staging" {
   name   = "tecnoly-staging"
   region = "us"
+  stack  = "heroku-22"
 }
 
 resource "heroku_app" "production" {
   name   = "tecnoly"
   region = "us"
+  stack  = "heroku-22"
 }
 
 
