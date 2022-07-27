@@ -1,5 +1,29 @@
+resource "heroku_app" "staging" {
+  name   = "tecnoly-staging"
+  region = "us"
+}
+
+resource "heroku_app" "production" {
+  name   = "tecnoly-production"
+  region = "us"
+}
+
+
 resource "heroku_pipeline" "this" {
   name = "tecnoly"
+}
+
+# Couple apps to different pipeline stages
+resource "heroku_pipeline_coupling" "staging" {
+  app_id   = heroku_app.staging.id
+  pipeline = heroku_pipeline.this.id
+  stage    = "staging"
+}
+
+resource "heroku_pipeline_coupling" "production" {
+  app_id   = heroku_app.production.id
+  pipeline = heroku_pipeline.this.id
+  stage    = "production"
 }
 
 resource "herokux_pipeline_github_integration" "this" {
@@ -20,5 +44,4 @@ resource "heroku_review_app_config" "this" {
 
   destroy_stale_apps = true
   stale_days         = 5
-  wait_for_ci        = true
 }
