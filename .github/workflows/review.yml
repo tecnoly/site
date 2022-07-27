@@ -16,6 +16,7 @@ jobs:
           terraform_version: '~> 1.2.6'
           terraform_wrapper: false
           cli_config_credentials_token: ${{ secrets.TFE_TOKEN }}
+      - run: terraform init
       - 
         id: terraform-output
         run: echo ::set-output name=heroku-pipeline-id::$(terraform output heroku_pipeline_id)
